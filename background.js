@@ -15,8 +15,8 @@ function updateRegexpes() {
 }
 function monitorTabRemoved(tabId, removeInfo) {
 	if(watch_tabs.includes(tabId)) {
-		watch_tabs = watch_tabs.filter(x=>{
-			return x === tabId;
+		watch_tabs = watch_tabs.filter(x => {
+			return x !== tabId;
 		});
 	}
 }
