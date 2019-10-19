@@ -1,22 +1,18 @@
-var defaultRgx =  ["<all_urls>"].join('\n')
+const defaultRgx =  ["<all_urls>"].join('\n');
 
-var myPort = browser.runtime.connect({name:"port-from-cs"});
-
+let myPort = browser.runtime.connect({name:"port-from-cs"});
 
 browser.storage.local.get("regstr", function(res) {
-  var regstr = (res.regstr || defaultRgx);
-  document.querySelector(".listextarea").value=regstr;
+    document.querySelector(".listextarea").value = (res.regstr || defaultRgx);
 });
-window.onload= function()
+window.onload = function()
 {
-  txarea = document.querySelector(".listextarea");
-  
-txarea.onkeyup = txarea.onchange
-  = function(){
-    regstr = txarea.value.trim()
-    myPort.postMessage({
-    	updateRegexpes: regstr
-    }); 
+    let txtarea = document.querySelector(".listextarea");
 
-  }
-}
+    txtarea.onchange = function(){
+        let regstr = txtarea.value.trim();
+        myPort.postMessage({
+            updateRegexpes: regstr
+        });
+    }
+};
